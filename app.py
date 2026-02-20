@@ -1,5 +1,5 @@
 """
-Prompt-based Agent — Streamlit Community Cloud entry point.
+Goal Reflection Agent — Streamlit Community Cloud entry point.
 
 Env vars are loaded from (in priority order):
   1. Streamlit secrets  (st.secrets)
@@ -10,6 +10,9 @@ Env vars are loaded from (in priority order):
 import os
 import uuid
 import streamlit as st
+
+# ── 0. Page config — must be the very first Streamlit call ───────────────────
+st.set_page_config(page_title="Prompt-based Agent", page_icon="🎯")
 
 # ── 1. Load configuration before importing the agent ────────────────────────
 
@@ -41,17 +44,15 @@ from langchain_core.messages import HumanMessage, AIMessage  # noqa: E402
 # ── 3. Helpers ────────────────────────────────────────────────────────────────
 
 def make_thread_id(seed: str) -> str:
-    """Return a deterministic UUID5 from *seed* (patient_id or session key)."""
+    """Return a deterministic UUID5 from *seed* (session key)."""
     return str(uuid.uuid5(uuid.NAMESPACE_DNS, seed))
 
 
-def run_graph(messages: list, user_name: str, user_id: str, thread_id: str) -> str:
+def run_graph(messages: list, thread_id: str) -> str:
     """Invoke the LangGraph agent and return the last AI message content."""
     config = {
         "configurable": {
             "thread_id": thread_id,
-            "user_name": user_name or None,
-            "user_id": user_id or None,
         }
     }
     result = graph.invoke({"messages": messages}, config=config)
@@ -64,25 +65,17 @@ def run_graph(messages: list, user_name: str, user_id: str, thread_id: str) -> s
 
 # ── 4. Streamlit UI ───────────────────────────────────────────────────────────
 
-st.set_page_config(page_title="Prompt-based Agent", page_icon="🎯")
-st.title("🎯 Prompt-based Agent")
+st.title("Prompt Based Agent")
 
-# ── Sidebar: identity / config ────────────────────────────────────────────────
+# ── Session seed (stable per browser session) ────────────────────────────────
+if "session_seed" not in st.session_state:
+    st.session_state.session_seed = str(uuid.uuid4())
+
+thread_id = make_thread_id(st.session_state.session_seed)
+
+# ── Sidebar: thread info + clear ─────────────────────────────────────────────
 with st.sidebar:
-    st.header("Session settings")
-    user_name = st.text_input("Your name", placeholder="e.g. Alice")
-    user_id   = st.text_input("Patient ID", placeholder="e.g. 42")
-
-    # Thread ID is derived from patient_id when provided, else from a random
-    # per-browser-session key so conversations don't bleed into each other.
-    if "session_seed" not in st.session_state:
-        st.session_state.session_seed = str(uuid.uuid4())
-
-    seed      = user_id.strip() if user_id.strip() else st.session_state.session_seed
-    thread_id = make_thread_id(seed)
-
-    st.caption(f"Thread ID (UUID5): `{thread_id}`")
-
+    st.caption(f"Thread ID: `{thread_id}`")
     if st.button("🗑️ Clear conversation"):
         st.session_state.chat_history = []
         st.rerun()
@@ -117,7 +110,7 @@ if user_input:
     with st.chat_message("assistant"):
         with st.spinner("Thinking…"):
             try:
-                response = run_graph(lc_messages, user_name, user_id, thread_id)
+                response = run_graph(lc_messages, thread_id)
             except Exception as exc:
                 response = f"⚠️ Error: {exc}"
         st.markdown(response)
