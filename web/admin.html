@@ -57,13 +57,13 @@
       </section>
       {% for usecase_number in (1, 2) %}
       <section class="admin-section">
-        <div class="section-heading"><span>0{{ usecase_number + 1 }}</span><div><h2>{{ _("Use case") }} {{ usecase_number }}</h2><p>{{ _("Give participants a clear choice and three scenarios to explore.") }}</p></div></div>
+        <div class="section-heading"><span>0{{ usecase_number + 1 }}</span><div><h2>{{ _("Use case") }} {{ usecase_number }}</h2><p>{{ _("Give participants a clear choice and three scenarios to explore.") }} {{ _("Write the three questions as complete questions. The assistant asks them as written, in the participant's language.") }}</p></div></div>
         <div class="admin-grid">
           <label>{{ _("Title") }} <input name="usecase_{{ usecase_number }}_name" value="{{ form.get('usecase_' ~ usecase_number ~ '_name', '') if form else '' }}" required /></label>
           <label>{{ _("Description") }} <textarea name="usecase_{{ usecase_number }}_description" required>{{ form.get('usecase_' ~ usecase_number ~ '_description', '') if form else '' }}</textarea></label>
         </div>
         <div class="question-grid">
-          {% for question, label in (('initial', _("Initial question")), ('context', _("Context question")), ('final', _("Final question"))) %}<label>{{ label }} <textarea name="usecase_{{ usecase_number }}_question_{{ question }}" required>{{ form.get('usecase_' ~ usecase_number ~ '_question_' ~ question, '') if form else '' }}</textarea></label>{% endfor %}
+          {% for question, label, hint in (('initial', _("Initial question"), _("Question 1, asked right after the chosen idea is introduced.")), ('context', _("Context question"), _("Question 2, about everyday life.")), ('final', _("Final question"), _("Question 5, about what to change or add."))) %}<label>{{ label }} <textarea name="usecase_{{ usecase_number }}_question_{{ question }}" required>{{ form.get('usecase_' ~ usecase_number ~ '_question_' ~ question, '') if form else '' }}</textarea><small>{{ hint }}</small></label>{% endfor %}
         </div>
         {% for scenario_number in (1, 2, 3) %}
         <fieldset><legend>{{ _("Scenario") }} {{ scenario_number }}</legend><div class="admin-grid">

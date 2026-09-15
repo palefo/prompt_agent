@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-11 14:18+0000\n"
+"POT-Creation-Date: 2026-09-15 19:54+0000\n"
 "PO-Revision-Date: 2026-09-11 14:18+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: pt_BR\n"
@@ -372,6 +372,14 @@ msgstr "Caso de uso"
 msgid "Give participants a clear choice and three scenarios to explore."
 msgstr "Ofereça aos participantes uma escolha clara e três cenários para explorar."
 
+#: web/admin.html:60
+msgid ""
+"Write the three questions as complete questions. The assistant asks them "
+"as written, in the participant's language."
+msgstr ""
+"Escreva as três perguntas como perguntas completas. O assistente as faz "
+"como estão escritas, no idioma do participante."
+
 #: web/admin.html:62
 msgid "Title"
 msgstr "Título"
@@ -385,12 +393,24 @@ msgid "Initial question"
 msgstr "Pergunta inicial"
 
 #: web/admin.html:66
+msgid "Question 1, asked right after the chosen idea is introduced."
+msgstr "Pergunta 1, feita logo depois de apresentar a ideia escolhida."
+
+#: web/admin.html:66
 msgid "Context question"
 msgstr "Pergunta de contexto"
 
 #: web/admin.html:66
+msgid "Question 2, about everyday life."
+msgstr "Pergunta 2, sobre o dia a dia."
+
+#: web/admin.html:66
 msgid "Final question"
 msgstr "Pergunta final"
+
+#: web/admin.html:66
+msgid "Question 5, about what to change or add."
+msgstr "Pergunta 5, sobre o que mudar ou acrescentar."
 
 #: web/admin.html:69 web/admin_response.html:28 web/admin_responses.html:33
 msgid "Scenario"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-11 14:18+0000\n"
+"POT-Creation-Date: 2026-09-15 19:54+0000\n"
 "PO-Revision-Date: 2026-09-08 16:57+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -374,6 +374,14 @@ msgstr ""
 "Ofrece a los participantes una opción clara y tres escenarios para "
 "explorar."
 
+#: web/admin.html:60
+msgid ""
+"Write the three questions as complete questions. The assistant asks them "
+"as written, in the participant's language."
+msgstr ""
+"Escribe las tres preguntas como preguntas completas. El asistente las "
+"hace tal como están escritas, en el idioma del participante."
+
 #: web/admin.html:62
 msgid "Title"
 msgstr "Título"
@@ -387,12 +395,24 @@ msgid "Initial question"
 msgstr "Pregunta inicial"
 
 #: web/admin.html:66
+msgid "Question 1, asked right after the chosen idea is introduced."
+msgstr "Pregunta 1, justo después de presentar la idea elegida."
+
+#: web/admin.html:66
 msgid "Context question"
 msgstr "Pregunta de contexto"
 
 #: web/admin.html:66
+msgid "Question 2, about everyday life."
+msgstr "Pregunta 2, sobre la vida cotidiana."
+
+#: web/admin.html:66
 msgid "Final question"
 msgstr "Pregunta final"
+
+#: web/admin.html:66
+msgid "Question 5, about what to change or add."
+msgstr "Pregunta 5, sobre qué cambiar o añadir."
 
 #: web/admin.html:69 web/admin_response.html:28 web/admin_responses.html:33
 msgid "Scenario"

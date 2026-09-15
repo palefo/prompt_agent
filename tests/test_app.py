@@ -10,6 +10,7 @@ from PIL import Image
 
 from backend import studies
 from backend.agent_service import _extract_json_object
+from PromptBasedAgent import _load_system_prompt
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 STUDY = "south_asia"
@@ -72,6 +73,16 @@ def test_extract_json_object_handles_code_fences():
     assert text == "Thank you!"
     assert parsed == {"a": {"b": "}"}}
     assert _extract_json_object("No JSON here") == ("No JSON here", None)
+
+
+def test_system_prompt_asks_the_study_questions():
+    question = "What do you like most about this option for supporting yourself with diabetes?"
+    prompt = _load_system_prompt({"agent_language": "Español", "initial": question})
+    assert "agent_language := Español" in prompt
+    assert "{{" not in prompt
+    assert f'"initial": "{question}"' in prompt
+    # The study's own question, not a sentence built from the use case title.
+    assert "Q1 := initial" in prompt
 
 
 # ── Participant flow ────────────────────────────────────────────────────────

@@ -152,9 +152,11 @@ says *(optional)*.
 Each study has **two use cases**. For each one:
 
 - **Title** and **Description** appear on the use case card.
-- **Initial**, **Context** and **Final** questions are given to the AI assistant.
-  In the current prompt the *Context* question is part of question 2 and the
-  *Final* question is question 5.
+- **Initial**, **Context** and **Final** questions are asked by the AI assistant
+  as written, translated into the participant's language when needed: *Initial*
+  is question 1 (right after the assistant introduces the chosen idea),
+  *Context* is question 2 and *Final* is question 5. Write each one as a
+  complete question.
 - **Three scenarios.** Each has a **Name** (card title), **Short description**,
   **What it does** and an **Imagine sentence**. All four are shown on the card
   and passed to the assistant.

@@ -321,13 +321,11 @@ deployment.
    participant loses their session (for example a different browser or device),
    they cannot come back. Options: keep this, or allow resuming an unfinished
    interview in the same study.
-4. **Prompt wording (research instrument):**
-   - Q1 is built as "What do you most like about this idea to" + use case, which
-     reads oddly ("…idea to Taking care of yourself?").
-   - The use case's own "initial question" from the admin form is only offered to
-     the model as an optional opening.
-   - The model now receives the scenario descriptions, but the prompt does not
-     tell it to mention them.
+4. **Prompt wording (research instrument):** resolved on 2026-09-15. Q1 used to
+   be built as "What do you most like about this idea to" + use case ("…idea to
+   Taking care of yourself?"). The assistant now presents the chosen idea and
+   asks the use case's own Initial, Context and Final questions as written
+   (questions 1, 2 and 5). The study form explains where each question is used.
 5. **Personal data and ethics:**
    - The participant's name is sent to Azure OpenAI (the prompt greets them by
      name). The Azure resource is in the UK.
