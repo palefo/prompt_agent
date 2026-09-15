@@ -1,0 +1,73 @@
+{
+  "header": "example",
+  "future_city": "Example City",
+  "text": "A city for example communities",
+  "language_options": [
+    {
+      "code": "en",
+      "name": "English"
+    }
+  ],
+  "user_id_list": [
+    "example1-study2",
+    "study1-template2"
+  ],
+  "communities": [
+    "Exa",
+    "Mple"
+  ],
+  "usecase_one": {
+    "Usecase one": {
+      "description": "Description of usecase one.",
+      "scenarios": {
+        "scenario one": [
+          "What is it - short",
+          "What does it do?",
+          "Imagine sentence"
+        ],
+        "scenario two": [
+          "What is it - short",
+          "What does it do?",
+          "Imagine sentence"
+        ],
+        "scenario three": [
+          "What is it - short",
+          "What does it do?",
+          "Imagine sentence"
+        ]
+      },
+      "questions": {
+        "initial": "What do you like most about this option for <usecase one>?",
+        "context": "How could this idea help you <usecase one> in everyday life?",
+        "final": "If we decided to build this technology, what would you change or add to make it more useful and comfortable for <usecase one> people?"
+      }
+    }
+  },
+  "usecase_two": {
+    "Usecase two": {
+      "description": "Description of usecase two.",
+      "scenarios": {
+        "scenario one": [
+          "What is it - short",
+          "What does it do?",
+          "Imagine sentence"
+        ],
+        "scenario two": [
+          "What is it - short",
+          "What does it do?",
+          "Imagine sentence"
+        ],
+        "scenario three": [
+          "What is it - short",
+          "What does it do?",
+          "Imagine sentence"
+        ]
+      },
+      "questions": {
+        "initial": "What do you like most about this option for <usecase two>?",
+        "context": "How could this idea help you <usecase two> in everyday life?",
+        "final": "If we decided to build this technology, what would you change or add to make it more useful and comfortable for <usecase two> people?"
+      }
+    }
+  }
+}

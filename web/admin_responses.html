@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="{{ current_language }}">
+{% import "_macros.html" as m with context %}
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{{ _("Responses") }} | {{ _("AI Futures") }}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+
+<body class="admin-page">
+  <header class="admin-header">
+    <div class="admin-kicker">{{ _("Community Design Lab") }}</div>
+    <h1>{{ _("Responses") }}</h1>
+    <p>{{ _("Participant answers and chat transcripts stored in the database.") }}</p>
+    {{ m.admin_nav('responses') }}
+  </header>
+  <main class="admin-shell">
+    {{ m.flashes() }}
+    <section class="admin-section">
+      <form method="get" class="filter-row">
+        <label for="studyFilter">{{ _("Study") }}</label>
+        <select id="studyFilter" name="study" onchange="this.form.submit()">
+          <option value="">{{ _("All studies") }}</option>
+          {% for study_id in study_ids %}<option value="{{ study_id }}" {% if study_id == study_filter %}selected{% endif %}>{{ study_id }}</option>{% endfor %}
+        </select>
+        <a class="link" href="{{ url_for('admin_export', fmt='csv', study=study_filter) }}">{{ _("Download CSV") }}</a>
+        <a class="link" href="{{ url_for('admin_export', fmt='json', study=study_filter) }}">{{ _("Download JSON") }}</a>
+      </form>
+      {% if rows %}
+      <p class="table-count">{{ _("%(count)s responses", count=rows|length) }} · {{ _("times in UTC") }}</p>
+      <div class="table-wrap">
+      <table class="responses">
+        <thead>
+          <tr><th>{{ _("Started") }}</th><th>{{ _("Study") }}</th><th>{{ _("Prolific ID") }}</th><th>{{ _("Name") }}</th><th>{{ _("Use case") }}</th><th>{{ _("Scenario") }}</th><th>{{ _("Messages") }}</th><th>{{ _("Status") }}</th><th></th></tr>
+        </thead>
+        <tbody>
+        {% for row in rows %}
+          <tr>
+            <td>{{ row.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+            <td>{{ row.study }}</td>
+            <td>{{ row.user_id }}</td>
+            <td>{{ row.name or '' }}</td>
+            <td>{{ row.usecase or '' }}</td>
+            <td>{{ row.scenario or '' }}</td>
+            <td>{{ row.transcript|length }}</td>
+            <td>{% if row.completed_at %}<span class="badge done">{{ _("Completed") }}</span>{% else %}<span class="badge">{{ _("In progress") }}</span>{% endif %}</td>
+            <td><a class="link" href="{{ url_for('admin_response', answer_id=row.id) }}">{{ _("View") }}</a></td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+      </div>
+      {% else %}
+      <p>{{ _("No responses yet.") }}</p>
+      {% endif %}
+    </section>
+  </main>
+</body>
+</html>

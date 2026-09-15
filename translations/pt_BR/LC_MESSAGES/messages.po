@@ -1,0 +1,857 @@
+# Portuguese (Brazil) translations for PROJECT.
+# Copyright (C) 2026 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-09-15 19:54+0000\n"
+"PO-Revision-Date: 2026-09-11 14:18+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: pt_BR\n"
+"Language-Team: pt_BR <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: app.py:216
+msgid "Use case one"
+msgstr "Caso de uso um"
+
+#: app.py:216
+msgid "Use case two"
+msgstr "Caso de uso dois"
+
+#: app.py:227
+msgid "Scenario one"
+msgstr "Cenário um"
+
+#: app.py:227
+msgid "Scenario two"
+msgstr "Cenário dois"
+
+#: app.py:227
+msgid "Scenario three"
+msgstr "Cenário três"
+
+#: app.py:295
+msgid ""
+"Languages must use the format 'code: Language name', e.g. 'es: Español' "
+"or 'pt-BR: Português (Brasil)'."
+msgstr ""
+"Os idiomas devem usar o formato 'código: Nome do idioma', por exemplo "
+"'es: Español' ou 'pt-BR: Português (Brasil)'."
+
+#: app.py:300
+msgid "At least one language is required."
+msgstr "É necessário pelo menos um idioma."
+
+#: app.py:302
+msgid "Language codes must be unique."
+msgstr "Os códigos de idioma não podem se repetir."
+
+#: app.py:317
+msgid "The three scenarios of a use case need different names."
+msgstr "Os três cenários de um caso de uso precisam de nomes diferentes."
+
+#: app.py:331
+msgid "The two use cases need different titles."
+msgstr "Os dois casos de uso precisam de títulos diferentes."
+
+#: app.py:347
+msgid "The completion URL must be a full link starting with https://"
+msgstr "A URL de conclusão deve ser um link completo começando com https://"
+
+#: app.py:361
+msgid "Please enter your name."
+msgstr "Por favor, informe seu nome."
+
+#: app.py:363
+msgid "Please enter a valid age."
+msgstr "Por favor, informe uma idade válida."
+
+#: app.py:365
+msgid "Please select your gender."
+msgstr "Por favor, selecione seu gênero."
+
+#: app.py:367
+msgid "Please select your community."
+msgstr "Por favor, selecione sua comunidade."
+
+#: app.py:385
+msgid "This form has expired. Please reload the page and try again."
+msgstr "Este formulário expirou. Recarregue a página e tente novamente."
+
+#: app.py:463
+msgid "Incorrect password."
+msgstr "Senha incorreta."
+
+#: app.py:501
+msgid "Study ID and header are required."
+msgstr "O ID do estudo e o cabeçalho são obrigatórios."
+
+#: app.py:504
+msgid ""
+"The study ID may only use lowercase letters, numbers, - and _, and cannot"
+" be a reserved word such as admin or app."
+msgstr ""
+"O ID do estudo só pode ter letras minúsculas, números, - e _, e não pode "
+"ser uma palavra reservada como admin ou app."
+
+#: app.py:508
+msgid "This study no longer exists."
+msgstr "Este estudo não existe mais."
+
+#: app.py:511
+msgid ""
+"A study with this ID already exists. Choose another ID or edit the "
+"existing study."
+msgstr ""
+"Já existe um estudo com este ID. Escolha outro ID ou edite o estudo "
+"existente."
+
+#: app.py:544
+msgid "Please complete every field."
+msgstr "Por favor, preencha todos os campos."
+
+#: app.py:546
+msgid "Upload all six study images."
+msgstr "Envie as seis imagens do estudo."
+
+#: app.py:548
+msgid "Upload the participant information sheet as a PDF."
+msgstr "Envie a folha de informações para participantes em PDF."
+
+#: app.py:550
+msgid "The participant information sheet must be a PDF."
+msgstr "A folha de informações para participantes deve ser um PDF."
+
+#: app.py:570
+#, python-format
+msgid "Study '%(study)s' was updated."
+msgstr "O estudo '%(study)s' foi atualizado."
+
+#: app.py:572
+#, python-format
+msgid "Study '%(study)s' was created."
+msgstr "O estudo '%(study)s' foi criado."
+
+#: app.py:606
+#, python-format
+msgid "Deleted the response of %(user)s."
+msgstr "A resposta de %(user)s foi excluída."
+
+#: app.py:644
+msgid "Please enter your Prolific ID and consent to participate."
+msgstr ""
+"Por favor, informe seu ID do Prolific e dê seu consentimento para "
+"participar."
+
+#: app.py:650
+msgid "Please check your Prolific ID."
+msgstr "Por favor, verifique seu ID do Prolific."
+
+#: app.py:659
+msgid "This Prolific ID has already been used."
+msgstr "Este ID do Prolific já foi usado."
+
+#: app.py:817
+msgid "Sorry, the assistant could not reply just now. Please press Send again."
+msgstr ""
+"Desculpe, o assistente não conseguiu responder agora. Clique em Enviar "
+"novamente."
+
+#: app.py:843
+msgid ""
+"Sorry, the assistant is not available right now. Please reload the page "
+"in a moment."
+msgstr ""
+"Desculpe, o assistente não está disponível no momento. Recarregue a "
+"página daqui a pouco."
+
+#: app.py:885
+msgid "Something is not right"
+msgstr "Algo não está certo"
+
+#: app.py:886
+msgid "Please go back and try again."
+msgstr "Volte e tente novamente."
+
+#: app.py:892
+msgid "Page not found"
+msgstr "Página não encontrada"
+
+#: app.py:893
+msgid "We could not find this page. Please check the link you were given."
+msgstr "Não encontramos esta página. Verifique o link que você recebeu."
+
+#: app.py:899
+msgid "Upload too large"
+msgstr "Arquivos grandes demais"
+
+#: app.py:900
+#, python-format
+msgid ""
+"The files are too large (%(size)s MB in total at most). Please use "
+"smaller images."
+msgstr ""
+"Os arquivos são grandes demais (no máximo %(size)s MB no total). Use "
+"imagens menores."
+
+#: app.py:907
+msgid "Something went wrong"
+msgstr "Algo deu errado"
+
+#: app.py:908
+msgid "Please try again in a moment."
+msgstr "Tente novamente daqui a pouco."
+
+#: web/_macros.html:16 web/admin_response.html:26
+msgid "Language"
+msgstr "Idioma"
+
+#: web/_macros.html:42
+msgid "Studies"
+msgstr "Estudos"
+
+#: web/_macros.html:43 web/admin.html:32 web/admin_response.html:6
+#: web/admin_responses.html:6 web/admin_responses.html:12
+msgid "Responses"
+msgstr "Respostas"
+
+#: web/_macros.html:46
+msgid "Log out"
+msgstr "Sair"
+
+#: web/admin.html:6
+msgid "Create a study"
+msgstr "Criar um estudo"
+
+#: web/admin.html:6 web/admin_login.html:6 web/admin_responses.html:6
+#: web/consent.html:6 web/error.html:5 web/error.html:14 web/home.html:5
+#: web/home.html:13 web/home.html:29 web/index.html:6
+msgid "AI Futures"
+msgstr "Futuros da IA"
+
+#: web/admin.html:11 web/admin_login.html:11 web/admin_response.html:11
+#: web/admin_responses.html:11 web/chat.html:97 web/consent.html:13
+#: web/error.html:10 web/home.html:28 web/index.html:13
+msgid "Community Design Lab"
+msgstr "Laboratório de Design Comunitário"
+
+#: web/admin.html:12
+msgid "Edit study"
+msgstr "Editar estudo"
+
+#: web/admin.html:12
+msgid "Create a new study"
+msgstr "Criar um novo estudo"
+
+#: web/admin.html:13
+msgid ""
+"Set up the participant experience, scenarios, questions, and image assets"
+" in one place."
+msgstr ""
+"Configure em um só lugar a experiência dos participantes, os cenários, as"
+" perguntas e as imagens."
+
+#: web/admin.html:18
+msgid "Participant URL:"
+msgstr "URL para participantes:"
+
+#: web/admin.html:20
+msgid "Available studies"
+msgstr "Estudos disponíveis"
+
+#: web/admin.html:20
+msgid "Open a participant page or edit an existing study."
+msgstr "Abra a página de participantes ou edite um estudo existente."
+
+#: web/admin.html:26
+#, python-format
+msgid "%(started)s started · %(completed)s completed"
+msgstr "%(started)s iniciados · %(completed)s concluídos"
+
+#: web/admin.html:28
+msgid "Missing files:"
+msgstr "Arquivos ausentes:"
+
+#: web/admin.html:30
+msgid "Open"
+msgstr "Abrir"
+
+#: web/admin.html:31
+msgid "Edit"
+msgstr "Editar"
+
+#: web/admin.html:38
+msgid "No studies created yet."
+msgstr "Nenhum estudo criado ainda."
+
+#: web/admin.html:40
+msgid "Create a new study instead"
+msgstr "Criar um novo estudo"
+
+#: web/admin.html:46
+msgid "Study details"
+msgstr "Detalhes do estudo"
+
+#: web/admin.html:46
+msgid "These values become the opening page."
+msgstr "Estes valores aparecem na página inicial."
+
+#: web/admin.html:48
+msgid "Study ID"
+msgstr "ID do estudo"
+
+#: web/admin.html:48
+msgid ""
+"Becomes the study link, e.g. /south_asia. Lowercase letters, numbers, - "
+"and _."
+msgstr ""
+"Forma o link do estudo, por exemplo /south_asia. Letras minúsculas, "
+"números, - e _."
+
+#: web/admin.html:49
+msgid "Header"
+msgstr "Cabeçalho"
+
+#: web/admin.html:50
+msgid "Future city"
+msgstr "Cidade do futuro"
+
+#: web/admin.html:51
+msgid "Languages"
+msgstr "Idiomas"
+
+#: web/admin.html:51
+msgid ""
+"One per line as code: Language name, e.g. es: Español or pt-BR: Português"
+" (Brasil)."
+msgstr ""
+"Um por linha no formato código: Nome do idioma, por exemplo es: Español "
+"ou pt-BR: Português (Brasil)."
+
+#: web/admin.html:52
+msgid "User IDs"
+msgstr "IDs de usuários"
+
+#: web/admin.html:52 web/admin.html:53
+msgid "One per line"
+msgstr "Um por linha"
+
+#: web/admin.html:53
+msgid "Communities"
+msgstr "Comunidades"
+
+#: web/admin.html:54
+msgid "Intro text"
+msgstr "Texto de introdução"
+
+#: web/admin.html:55
+msgid "Completion URL (optional)"
+msgstr "URL de conclusão (opcional)"
+
+#: web/admin.html:55
+msgid ""
+"Shown as a button when the participant finishes the conversation, e.g. "
+"the Prolific completion link."
+msgstr ""
+"Aparece como botão quando o participante termina a conversa, por exemplo "
+"o link de conclusão do Prolific."
+
+#: web/admin.html:60 web/admin_response.html:27 web/admin_responses.html:33
+msgid "Use case"
+msgstr "Caso de uso"
+
+#: web/admin.html:60
+msgid "Give participants a clear choice and three scenarios to explore."
+msgstr "Ofereça aos participantes uma escolha clara e três cenários para explorar."
+
+#: web/admin.html:60
+msgid ""
+"Write the three questions as complete questions. The assistant asks them "
+"as written, in the participant's language."
+msgstr ""
+"Escreva as três perguntas como perguntas completas. O assistente as faz "
+"como estão escritas, no idioma do participante."
+
+#: web/admin.html:62
+msgid "Title"
+msgstr "Título"
+
+#: web/admin.html:63
+msgid "Description"
+msgstr "Descrição"
+
+#: web/admin.html:66
+msgid "Initial question"
+msgstr "Pergunta inicial"
+
+#: web/admin.html:66
+msgid "Question 1, asked right after the chosen idea is introduced."
+msgstr "Pergunta 1, feita logo depois de apresentar a ideia escolhida."
+
+#: web/admin.html:66
+msgid "Context question"
+msgstr "Pergunta de contexto"
+
+#: web/admin.html:66
+msgid "Question 2, about everyday life."
+msgstr "Pergunta 2, sobre o dia a dia."
+
+#: web/admin.html:66
+msgid "Final question"
+msgstr "Pergunta final"
+
+#: web/admin.html:66
+msgid "Question 5, about what to change or add."
+msgstr "Pergunta 5, sobre o que mudar ou acrescentar."
+
+#: web/admin.html:69 web/admin_response.html:28 web/admin_responses.html:33
+msgid "Scenario"
+msgstr "Cenário"
+
+#: web/admin.html:70 web/admin_response.html:22 web/admin_responses.html:33
+msgid "Name"
+msgstr "Nome"
+
+#: web/admin.html:71
+msgid "Short description"
+msgstr "Descrição curta"
+
+#: web/admin.html:72
+msgid "What it does"
+msgstr "O que faz"
+
+#: web/admin.html:73
+msgid "Imagine sentence"
+msgstr "Frase para imaginar"
+
+#: web/admin.html:79
+msgid "Study assets"
+msgstr "Arquivos do estudo"
+
+#: web/admin.html:79
+msgid ""
+"Upload the images (PNG, JPG, WebP) and participant information sheet "
+"(PDF) used by the participant page."
+msgstr ""
+"Envie as imagens (PNG, JPG, WebP) e a folha de informações para "
+"participantes (PDF) usadas na página de participantes."
+
+#: web/admin.html:79
+msgid "Leave a file empty to keep the current one."
+msgstr "Deixe um arquivo em branco para manter o atual."
+
+#: web/admin.html:81
+msgid "City image"
+msgstr "Imagem da cidade"
+
+#: web/admin.html:82
+msgid "Use case 1 image"
+msgstr "Imagem do caso de uso 1"
+
+#: web/admin.html:83
+msgid "Use case 2 image"
+msgstr "Imagem do caso de uso 2"
+
+#: web/admin.html:84
+#, python-format
+msgid "Scenario %(number)s image"
+msgstr "Imagem do cenário %(number)s"
+
+#: web/admin.html:85
+msgid "Participant information sheet (PDF)"
+msgstr "Folha de informações para participantes (PDF)"
+
+#: web/admin.html:88
+msgid "Update study"
+msgstr "Atualizar estudo"
+
+#: web/admin.html:88
+msgid "Create study"
+msgstr "Criar estudo"
+
+#: web/admin_login.html:6 web/admin_login.html:12
+msgid "Admin login"
+msgstr "Acesso de administração"
+
+#: web/admin_login.html:13
+msgid "Enter the admin password to manage studies."
+msgstr "Digite a senha de administração para gerenciar os estudos."
+
+#: web/admin_login.html:20
+msgid "Password"
+msgstr "Senha"
+
+#: web/admin_login.html:23
+msgid "Log in"
+msgstr "Entrar"
+
+#: web/admin_response.html:13
+msgid "started"
+msgstr "iniciado em"
+
+#: web/admin_response.html:13
+msgid "completed"
+msgstr "concluído em"
+
+#: web/admin_response.html:17
+msgid "All responses"
+msgstr "Todas as respostas"
+
+#: web/admin_response.html:19
+msgid "Participant"
+msgstr "Participante"
+
+#: web/admin_response.html:21
+msgid "Consent"
+msgstr "Consentimento"
+
+#: web/admin_response.html:21
+msgid "Yes"
+msgstr "Sim"
+
+#: web/admin_response.html:21
+msgid "No"
+msgstr "Não"
+
+#: web/admin_response.html:23 web/index.html:52
+msgid "Age"
+msgstr "Idade"
+
+#: web/admin_response.html:24 web/index.html:55
+msgid "Gender"
+msgstr "Gênero"
+
+#: web/admin_response.html:25 web/index.html:63
+msgid "Community"
+msgstr "Comunidade"
+
+#: web/admin_response.html:32
+msgid "Conversation"
+msgstr "Conversa"
+
+#: web/admin_response.html:32
+#, python-format
+msgid "%(count)s messages"
+msgstr "%(count)s mensagens"
+
+#: web/admin_response.html:37
+msgid "No messages yet."
+msgstr "Nenhuma mensagem ainda."
+
+#: web/admin_response.html:42
+msgid "Summary from the assistant"
+msgstr "Resumo do assistente"
+
+#: web/admin_response.html:42
+msgid "Saved when the interview is complete."
+msgstr "Salvo quando a entrevista termina."
+
+#: web/admin_response.html:43
+msgid "Not available yet."
+msgstr "Ainda não disponível."
+
+#: web/admin_response.html:45
+msgid "Delete this response permanently?"
+msgstr "Excluir esta resposta permanentemente?"
+
+#: web/admin_response.html:48
+msgid "Delete this response"
+msgstr "Excluir esta resposta"
+
+#: web/admin_response.html:49
+msgid ""
+"Deleting also frees the Prolific ID so it can be used again (useful for "
+"test runs)."
+msgstr ""
+"A exclusão também libera o ID do Prolific para ser usado de novo (útil "
+"para testes)."
+
+#: web/admin_responses.html:13
+msgid "Participant answers and chat transcripts stored in the database."
+msgstr ""
+"Respostas dos participantes e transcrições das conversas salvas no banco "
+"de dados."
+
+#: web/admin_responses.html:20 web/admin_responses.html:33
+msgid "Study"
+msgstr "Estudo"
+
+#: web/admin_responses.html:22
+msgid "All studies"
+msgstr "Todos os estudos"
+
+#: web/admin_responses.html:25
+msgid "Download CSV"
+msgstr "Baixar CSV"
+
+#: web/admin_responses.html:26
+msgid "Download JSON"
+msgstr "Baixar JSON"
+
+#: web/admin_responses.html:29
+#, python-format
+msgid "%(count)s responses"
+msgstr "%(count)s respostas"
+
+#: web/admin_responses.html:29
+msgid "times in UTC"
+msgstr "horários em UTC"
+
+#: web/admin_responses.html:33
+msgid "Started"
+msgstr "Início"
+
+#: web/admin_responses.html:33 web/consent.html:45
+msgid "Prolific ID"
+msgstr "ID do Prolific"
+
+#: web/admin_responses.html:33
+msgid "Messages"
+msgstr "Mensagens"
+
+#: web/admin_responses.html:33
+msgid "Status"
+msgstr "Status"
+
+#: web/admin_responses.html:45
+msgid "Completed"
+msgstr "Concluído"
+
+#: web/admin_responses.html:45
+msgid "In progress"
+msgstr "Em andamento"
+
+#: web/admin_responses.html:46
+msgid "View"
+msgstr "Ver"
+
+#: web/admin_responses.html:53
+msgid "No responses yet."
+msgstr "Nenhuma resposta ainda."
+
+#: web/chat.html:6
+msgid "AI Futures Agent"
+msgstr "Agente Futuros da IA"
+
+#: web/chat.html:13
+msgid "Welcome · Community Design Lab"
+msgstr "Boas-vindas · Laboratório de Design Comunitário"
+
+#: web/chat.html:21 web/index.html:21
+msgid "A city designed with you"
+msgstr "Uma cidade projetada com você"
+
+#: web/chat.html:36
+msgid "AI Futures assistant."
+msgstr "Assistente Futuros da IA."
+
+#: web/chat.html:41
+msgid "Choose a different idea"
+msgstr "Escolher outra ideia"
+
+#: web/chat.html:43
+msgid "Thread ID:"
+msgstr "ID da conversa:"
+
+#: web/chat.html:58
+msgid "Start a conversation with your agent."
+msgstr "Comece uma conversa com seu agente."
+
+#: web/chat.html:65
+msgid "Thank you for taking part!"
+msgstr "Obrigado por participar!"
+
+#: web/chat.html:66
+msgid "Your answers have been saved."
+msgstr "Suas respostas foram salvas."
+
+#: web/chat.html:68
+msgid "Finish and return to Prolific"
+msgstr "Concluir e voltar ao Prolific"
+
+#: web/chat.html:70
+msgid "You can now close this window."
+msgstr "Agora você pode fechar esta janela."
+
+#: web/chat.html:79 web/chat.html:80
+msgid "Type your message…"
+msgstr "Digite sua mensagem…"
+
+#: web/chat.html:83
+msgid "Sending…"
+msgstr "Enviando…"
+
+#: web/chat.html:83
+msgid "Send"
+msgstr "Enviar"
+
+#: web/chat.html:85
+msgid "Press Enter to send, Shift + Enter for a new line."
+msgstr "Pressione Enter para enviar e Shift + Enter para uma nova linha."
+
+#: web/chat.html:90
+msgid "Reset chat"
+msgstr "Reiniciar conversa"
+
+#: web/consent.html:20
+msgid "Participation information"
+msgstr "Informações sobre a participação"
+
+#: web/consent.html:24
+msgid ""
+"Please read the study information before continuing. Your responses will "
+"be used for this research study."
+msgstr ""
+"Leia as informações do estudo antes de continuar. Suas respostas serão "
+"usadas neste estudo de pesquisa."
+
+#: web/consent.html:33
+msgid "Participant information sheet"
+msgstr "Folha de informações para participantes"
+
+#: web/consent.html:37
+msgid "Open the participant information sheet"
+msgstr "Abrir a folha de informações para participantes"
+
+#: web/consent.html:41
+msgid ""
+"The participant information sheet is not available yet. Please contact "
+"the research team."
+msgstr ""
+"A folha de informações para participantes ainda não está disponível. "
+"Entre em contato com a equipe de pesquisa."
+
+#: web/consent.html:49
+msgid ""
+"I consent to take part in this study and confirm that I am the Prolific "
+"participant identified above."
+msgstr ""
+"Concordo em participar deste estudo e confirmo que sou a pessoa "
+"participante do Prolific identificada acima."
+
+#: web/consent.html:53
+msgid ""
+"I confirm that I have read the participant information sheet and agree to"
+" take part in this study."
+msgstr ""
+"Confirmo que li a folha de informações para participantes e aceito "
+"participar deste estudo."
+
+#: web/consent.html:55
+msgid "Continue to study"
+msgstr "Continuar para o estudo"
+
+#: web/error.html:17 web/index.html:89 web/index.html:115
+msgid "Back"
+msgstr "Voltar"
+
+#: web/home.html:22
+msgid "futures webpage"
+msgstr "página do futures"
+
+#: web/home.html:30
+msgid "This site hosts research studies about the future of healthcare."
+msgstr "Este site hospeda estudos de pesquisa sobre o futuro da saúde."
+
+#: web/home.html:31
+msgid ""
+"If you have been invited to take part, please use the study link you "
+"received."
+msgstr ""
+"Se você recebeu um convite para participar, use o link do estudo que foi "
+"enviado a você."
+
+#: web/index.html:40
+msgid "Welcome to"
+msgstr "Boas-vindas a"
+
+#: web/index.html:42
+msgid "Before we begin, tell us a little about yourself."
+msgstr "Antes de começar, conte-nos um pouco sobre você."
+
+#: web/index.html:43
+msgid "Your responses will help shape the future city."
+msgstr "Suas respostas vão ajudar a moldar a cidade do futuro."
+
+#: web/index.html:49
+msgid "Your name"
+msgstr "Seu nome"
+
+#: web/index.html:50
+msgid "Enter your name"
+msgstr "Digite seu nome"
+
+#: web/index.html:50 web/index.html:53 web/index.html:56 web/index.html:65
+msgid "Please fill out this field."
+msgstr "Por favor, preencha este campo."
+
+#: web/index.html:53
+msgid "Enter your age"
+msgstr "Digite sua idade"
+
+#: web/index.html:57
+msgid "Select your gender"
+msgstr "Selecione seu gênero"
+
+#: web/index.html:58
+msgid "Woman"
+msgstr "Mulher"
+
+#: web/index.html:58
+msgid "Man"
+msgstr "Homem"
+
+#: web/index.html:58
+msgid "Non-binary"
+msgstr "Não binário"
+
+#: web/index.html:58 web/index.html:71
+msgid "Prefer not to say"
+msgstr "Prefiro não dizer"
+
+#: web/index.html:66
+msgid "Select your community"
+msgstr "Selecione sua comunidade"
+
+#: web/index.html:71
+msgid "Other"
+msgstr "Outra"
+
+#: web/index.html:78
+msgid "Start designing"
+msgstr "Comece a projetar"
+
+#: web/index.html:82
+msgid "Not started"
+msgstr "Não iniciado"
+
+#: web/index.html:92
+msgid "Choose a use case"
+msgstr "Escolha um caso de uso"
+
+#: web/index.html:94
+msgid ""
+"Explore different ways healthcare technology could support everyday life "
+"in"
+msgstr ""
+"Explore diferentes formas como a tecnologia em saúde poderia apoiar o dia"
+" a dia em"
+
+#: web/index.html:120
+msgid "Choose the idea you would like to talk about with our AI assistant."
+msgstr ""
+"Escolha a ideia sobre a qual você gostaria de conversar com nosso "
+"assistente de IA."
+
+#: web/index.html:123
+msgid "Preparing your conversation…"
+msgstr "Preparando sua conversa…"
+

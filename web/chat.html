@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="{{ current_language }}">
+{% import "_macros.html" as m with context %}
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{{ _("AI Futures Agent") }}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+<link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+
+
+<header class="brand">
+<div class="progress" id="progress">
+    {{ _("Welcome · Community Design Lab") }}
+</div>
+{{ m.language_picker(url_for('chat', study_id=study)) }}
+</header>
+
+<!-- HERO -->
+<section class="hero hero-compact">
+    <div class="hero-copy">
+        <div class="eyebrow">{{ _("A city designed with you") }}</div>
+
+        <h1>{{ header }}</h1>
+
+        <p class="lede">{{ text }}</p>
+    </div>
+
+    <div class="hero-art">
+        {{ m.study_image(study, 'city.jpg', future_city) }}
+    </div>
+</section>
+
+<main class="shell chat-shell" id="chat">
+
+    <div class="sidebar">
+    <h1>{{ _("AI Futures assistant.") }}</h1>
+    <p class="sidebar-usecase">{{ usecase }}</p>
+    <p class="sidebar-scenario"><strong>{{ scenario }}</strong>{% if scenario_title %} · {{ scenario_title }}{% endif %}</p>
+    {% if scenario_imagine %}<p class="imagine">{{ scenario_imagine }}</p>{% endif %}
+    {% if not completed %}
+    <p class="back-link"><a href="{{ url_for('survey', study_id=study, view='scenario') }}">← {{ _("Choose a different idea") }}</a></p>
+    {% endif %}
+    <div class="thread-box">{{ _("Thread ID:") }} <strong>{{ thread_id }}</strong></div>
+    </div>
+
+    <section class="panel chat-panel">
+    {{ m.flashes() }}
+    {% if error %}<div class="notice error">{{ error }}</div>{% endif %}
+    <div class="messages" id="messages">
+        {% if chat_history %}
+        {% for message in chat_history %}
+            <div class="message {{ message.role }}">
+            <div class="bubble">{{ message.content }}</div>
+            </div>
+        {% endfor %}
+        {% else %}
+        <div class="empty-state">
+            <p>{{ _("Start a conversation with your agent.") }}</p>
+        </div>
+        {% endif %}
+    </div>
+
+    {% if completed %}
+    <div class="completion">
+        <h2>{{ _("Thank you for taking part!") }}</h2>
+        <p>{{ _("Your answers have been saved.") }}</p>
+        {% if completion_url %}
+        <a class="primary" href="{{ completion_url }}">{{ _("Finish and return to Prolific") }}</a>
+        {% else %}
+        <p>{{ _("You can now close this window.") }}</p>
+        {% endif %}
+    </div>
+    {% else %}
+    <form method="post" action="{{ url_for('chat', study_id=study) }}" class="composer" id="composer">
+        <textarea
+        name="message"
+        rows="2"
+        maxlength="4000"
+        placeholder="{{ _('Type your message…') }}"
+        aria-label="{{ _('Type your message…') }}"
+        required
+        >{{ draft }}</textarea>
+        <button type="submit" data-sending="{{ _('Sending…') }}">{{ _("Send") }}</button>
+    </form>
+    <p class="composer-hint">{{ _("Press Enter to send, Shift + Enter for a new line.") }}</p>
+    {% endif %}
+
+    <!--
+    <form method="post" action="{{ url_for('clear_chat', study_id=study) }}" class="clear-chat">
+        <button type="submit">{{ _("Reset chat") }}</button>
+    </form> -->
+    </section>
+
+</main>
+
+<footer>
+{{ future_city }} · {{ _("Community Design Lab") }}
+</footer>
+
+<script>
+(function () {
+    var messages = document.getElementById("messages");
+    var composer = document.getElementById("composer");
+    messages.scrollTop = messages.scrollHeight;
+    if (window.location.hash === "#chat") {
+        (composer || messages).scrollIntoView({block: "end"});
+    }
+    if (!composer) return;
+    var box = composer.querySelector("textarea");
+    var button = composer.querySelector("button");
+
+    box.addEventListener("keydown", function (event) {
+        if (event.key === "Enter" && !event.shiftKey && !event.isComposing) {
+            event.preventDefault();
+            if (box.value.trim()) composer.requestSubmit();
+        }
+    });
+
+    // Show the message and a typing indicator while the page waits for the reply.
+    composer.addEventListener("submit", function (event) {
+        if (!box.value.trim() || composer.dataset.sending) {
+            event.preventDefault();
+            return;
+        }
+        composer.dataset.sending = "1";
+        var empty = messages.querySelector(".empty-state");
+        if (empty) empty.remove();
+        var mine = document.createElement("div");
+        mine.className = "message user";
+        var bubble = document.createElement("div");
+        bubble.className = "bubble";
+        bubble.textContent = box.value.trim();
+        mine.appendChild(bubble);
+        var typing = document.createElement("div");
+        typing.className = "message assistant";
+        typing.innerHTML = '<div class="bubble typing" aria-label="…"><span></span><span></span><span></span></div>';
+        messages.appendChild(mine);
+        messages.appendChild(typing);
+        messages.scrollTop = messages.scrollHeight;
+        box.readOnly = true;
+        button.disabled = true;
+        button.textContent = button.dataset.sending;
+    });
+})();
+</script>
+
+</html>

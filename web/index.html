@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="{{ current_language }}">
+{% import "_macros.html" as m with context %}
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{{ header or _("AI Futures") }}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+<link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+
+
+<header class="brand">
+<div class="progress" id="progress">
+    {{ _("Community Design Lab") }}
+</div>
+{{ m.language_picker(url_for('survey', study_id=study), {'view': request.args.get('view')}) }}
+</header>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-copy">
+        <div class="eyebrow">{{ _("A city designed with you") }}</div>
+
+        <h1>{{ header }}</h1>
+
+        <p class="lede">{{ text }}</p>
+    </div>
+
+    <div class="hero-art">
+        {{ m.study_image(study, 'city.jpg', future_city) }}
+    </div>
+</section>
+
+<main class="shell">
+    {{ m.flashes() }}
+
+    <!-- PARTICIPANT ENTRY -->
+    <section class="{{ entry_status }}" id="entry">
+    <div class="entry-form">
+        <div class="center">
+        <h2>{{ _("Welcome to") }} {{ future_city }}</h2>
+        <p>
+            {{ _("Before we begin, tell us a little about yourself.") }}
+            {{ _("Your responses will help shape the future city.") }}
+        </p>
+        </div>
+
+        <form method="post" action="{{ url_for('survey', study_id=study, view='usecases') }}">
+        <div class="field-row">
+            <label for="nameInput">{{ _("Your name") }}</label>
+            <input id="nameInput" type="text" placeholder="{{ _('Enter your name') }}" name="name" value="{{ answer.name or '' }}" maxlength="100" required data-required-message="{{ _('Please fill out this field.') }}"/>
+
+            <label for="ageInput">{{ _("Age") }}</label>
+            <input id="ageInput" type="number" placeholder="{{ _('Enter your age') }}" name="age" value="{{ answer.age or '' }}" min="1" max="120" step="1" required data-required-message="{{ _('Please fill out this field.') }}"/>
+
+            <label for="genderGroup">{{ _("Gender") }}</label>
+            <select class="pill" id="genderGroup" name="gender" required data-required-message="{{ _('Please fill out this field.') }}">
+                <option value="" disabled {% if not answer.gender %}selected{% endif %}>{{ _("Select your gender") }}</option>
+                {% for value, label in [("Woman", _("Woman")), ("Man", _("Man")), ("Non-binary", _("Non-binary")), ("Prefer not to say", _("Prefer not to say"))] %}
+                <option value="{{ value }}" {% if answer.gender == value %}selected{% endif %}>{{ label }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="communityGroup">{{ _("Community") }}</label>
+            <!-- From study.json -->
+            <select class="pill" id="communityGroup" name="community" required data-required-message="{{ _('Please fill out this field.') }}">
+                <option value="" disabled {% if not answer.community %}selected{% endif %}>{{ _("Select your community") }}</option>
+                {% for item in communities %}
+                <option value="{{ item }}" {% if answer.community == item %}selected{% endif %}>{{ item }}</option>
+                {% endfor %}
+                <!-- Default -->
+                {% for value, label in [("Other", _("Other")), ("Prefer not to say", _("Prefer not to say"))] %}
+                <option value="{{ value }}" {% if answer.community == value %}selected{% endif %}>{{ label }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <button class="primary" id="enterBtn" type="submit">
+        {{ _("Start designing") }} {{ future_city }}
+        </button>
+
+        </form>
+        <div class="status" id="status">{{ _("Not started") }}</div>
+    </div>
+    </section>
+
+    <!-- USE CASES -->
+    <section class="{{ usecase_status }}" id="cases">
+    <div class="back-row">
+        <a class="secondary" href="{{ url_for('survey', study_id=study, view='entry') }}">← {{ _("Back") }}</a>
+    </div>
+    <div class="center">
+        <h2>{{ _("Choose a use case") }}</h2>
+        <p>
+        {{ _("Explore different ways healthcare technology could support everyday life in") }} {{ future_city }}.
+        </p>
+    </div>
+
+    <form class="case-grid" method="post" action="{{ url_for('survey', study_id=study, view='scenario') }}">
+        {% for card in usecases %}
+        <button class="case" name="{{ card.key }}" type="submit">
+        {{ m.study_image(study, card.image, card.name) }}
+        <div class="case-body">
+            <span class="tag">{{ card.tag }}</span>
+            <h3>{{ card.name }}</h3>
+            <p class="imagine">{{ card.description }}</p>
+        </div>
+        </button>
+        {% endfor %}
+    </form>
+    </section>
+
+    <!-- SCENARIOS -->
+    <section class="{{ scenario_status }}" id="scenarios">
+    <div class="back-row">
+        <a class="secondary" id="backCases" href="{{ url_for('survey', study_id=study, view='usecases') }}">← {{ _("Back") }}</a>
+    </div>
+
+    <div class="center">
+        <h2 id="scenarioTitle">{{ chosen_usecase }}</h2>
+        <p id="scenarioCopy">{{ _("Choose the idea you would like to talk about with our AI assistant.") }}</p>
+    </div>
+
+    <form class="scenario-grid" id="scenarioGrid" method="post" action="{{ url_for('chat', study_id=study) }}" data-loading="{{ _('Preparing your conversation…') }}">
+        {% for card in scenarios %}
+        <button class="scenario" name="{{ card.key }}" type="submit">
+        {{ m.study_image(study, card.image, card.name) }}
+        <div class="case-body">
+            <span class="tag">{{ card.tag }}</span>
+            <h3>{{ card.name }}</h3>
+            {% if card.title %}<p class="scenario-title">{{ card.title }}</p>{% endif %}
+            {% if card.detail %}<p class="scenario-detail">{{ card.detail }}</p>{% endif %}
+            <p class="imagine">{{ card.imagine }}</p>
+        </div>
+        </button>
+        {% endfor %}
+    </form>
+    </section>
+
+</main>
+
+<div class="loading-overlay hidden" id="loadingOverlay" role="status" aria-live="polite">
+    <div class="loading-box"><span class="spinner"></span><span id="loadingText"></span></div>
+</div>
+
+<footer>
+{{ future_city }}
+</footer>
+
+<script>
+    document.querySelectorAll("[required][data-required-message]").forEach((field) => {
+        field.addEventListener("invalid", () => {
+            if (!field.value) {
+                field.setCustomValidity(field.dataset.requiredMessage);
+            }
+        });
+        field.addEventListener("input", () => field.setCustomValidity(""));
+        field.addEventListener("change", () => field.setCustomValidity(""));
+    });
+    // Starting the chat waits for the assistant's first message; say so.
+    document.querySelectorAll("form[data-loading]").forEach((form) => {
+        form.addEventListener("submit", () => {
+            document.getElementById("loadingText").textContent = form.dataset.loading;
+            document.getElementById("loadingOverlay").classList.remove("hidden");
+        });
+    });
+    window.addEventListener("pageshow", () => document.getElementById("loadingOverlay").classList.add("hidden"));
+</script>
+
+</html>

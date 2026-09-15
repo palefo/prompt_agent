@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="{{ current_language }}">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{{ _('AI Futures') }}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+<link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+
+
+<body >
+<header class="brand">
+<div class="progress" id="progress">
+    {{ _("AI Futures") }}
+</div>
+</header>
+
+{% if landing_url %}
+<div class="web-viewer">
+    <embed
+        src="{{ landing_url }}"
+        type="text/html"
+        aria-label="{{ _('futures webpage') }}"
+    />
+</div>
+{% else %}
+<main class="consent-shell">
+    <section class="panel">
+        <div class="eyebrow">{{ _("Community Design Lab") }}</div>
+        <h1>{{ _("AI Futures") }}</h1>
+        <p class="lede">{{ _("This site hosts research studies about the future of healthcare.") }}</p>
+        <p>{{ _("If you have been invited to take part, please use the study link you received.") }}</p>
+    </section>
+</main>
+{% endif %}
+
+</body>
+</html>

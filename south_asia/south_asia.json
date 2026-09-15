@@ -1,0 +1,73 @@
+{
+  "header" : "Help us design Marigold Cross",
+  "future_city": "Marigold Cross",
+  "text": "A city designed around the needs and values of South Asian communities in the UK. You are invited to help imagine what healthcare could become in the future for your community.",
+  "language_options": [
+    {"code": "en", "name": "English"}
+  ],
+  "user_id_list" : [
+    "hay1-flour2",
+    "grain1-heap2"
+  ],
+  "communities" : [
+    "Indian",
+    "Pakistani",
+    "Bangladeshi",
+    "Sri Lankan",
+    "Nepali"
+  ],
+  "usecase_one": {
+    "Taking care of yourself": {
+      "description": "Explore technology that could help people manage diabetes while maintaining independence and everyday routines.",
+      "scenarios": {
+        "Self care": [
+          "A personal diabetes companion",
+          "A tool that helps you understand your health, manage everyday routines, and make choices that work for you.",
+          "Imagine having a personal companion that quietly helps you manage your diabetes"
+        ],
+        "Safety": [
+          "A responsive health support system",
+          "A system that notices when something might be wrong and helps connect you to appropriate support.",
+          "Imagine receiving timely support when you need it, without having to constantly ask someone else for help."
+        ],
+        "Community & connection": [
+          "A family recipe companion ",
+          "Helps adapt the meals you already cook together, so managing your health stays part of shared life. ",
+          "Imagine cooking a family recipe together, with a quiet nudge toward a healthier way to make it just as delicious."
+        ]
+      },
+      "questions": {
+        "initial": "What do you like most about this option for supporting yourself with diabetes?",
+        "context": "How could this idea help you take care of yourself and manage diabetes in everyday life?",
+        "final": "If we decided to build this technology, what would you change or add to make it more useful and comfortable for people living with diabetes?"
+      }
+    }
+  },
+  "usecase_two": {
+    "Taking care of our elders": {
+      "description": "Explore technology that could help older adults remain independent, safe, connected, and engaged.",
+      "scenarios": {
+        "Self care": [
+          "A simple reminder system ",
+          "Your relative controls it themselves, nudging them about medication and appointments in their own words and language. ",
+          "Imagine your father setting his own reminders, in his own words, and feeling proud he never has to ask for help."
+        ],
+        "Safety": [
+          "A direct alert service ",
+          "Notifies you if a dose or appointment is missed, wherever you are. ",
+          "Imagine getting a gentle message the moment your mother misses her medicine, wherever you happen to be that day."
+        ],
+        "Relatedness": [
+          "A shared family check-in space ",
+          "Lets relatives near and far see how your elder is doing, without anyone feeling watched over. ",
+          "Imagine your parent browsing nearby dance classes and game nights, and choosing to join in on their own terms."
+        ]
+      },
+      "questions": {
+        "initial": "What do you like most about this option for supporting older adults in the city?",
+        "context": "How could this idea help an older adult stay independent, connected, or engaged in everyday life?",
+        "final": "If we decided to build this technology, what would you change or add to make it more useful and comfortable for older adults?"
+      }
+    }
+  }
+}

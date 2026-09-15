@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="{{ current_language }}">
+{% import "_macros.html" as m with context %}
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{{ row.user_id }} | {{ _("Responses") }}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+
+<body class="admin-page">
+  <header class="admin-header">
+    <div class="admin-kicker">{{ _("Community Design Lab") }}</div>
+    <h1>{{ row.user_id }}</h1>
+    <p>{{ row.study }} · {{ _("started") }} {{ row.created_at.strftime('%Y-%m-%d %H:%M') }} UTC{% if row.completed_at %} · {{ _("completed") }} {{ row.completed_at.strftime('%Y-%m-%d %H:%M') }} UTC{% endif %}</p>
+    {{ m.admin_nav('responses') }}
+  </header>
+  <main class="admin-shell">
+    <p><a class="link" href="{{ url_for('admin_responses', study=row.study) }}">← {{ _("All responses") }}</a></p>
+    <section class="admin-section">
+      <div class="section-heading"><span>01</span><div><h2>{{ _("Participant") }}</h2></div></div>
+      <dl class="details">
+        <dt>{{ _("Consent") }}</dt><dd>{{ _("Yes") if row.consent else _("No") }}</dd>
+        <dt>{{ _("Name") }}</dt><dd>{{ row.name or '—' }}</dd>
+        <dt>{{ _("Age") }}</dt><dd>{{ row.age or '—' }}</dd>
+        <dt>{{ _("Gender") }}</dt><dd>{{ row.gender or '—' }}</dd>
+        <dt>{{ _("Community") }}</dt><dd>{{ row.community or '—' }}</dd>
+        <dt>{{ _("Language") }}</dt><dd>{{ row.agent_language or '—' }}</dd>
+        <dt>{{ _("Use case") }}</dt><dd>{{ row.usecase or '—' }}</dd>
+        <dt>{{ _("Scenario") }}</dt><dd>{{ row.scenario or '—' }}</dd>
+      </dl>
+    </section>
+    <section class="admin-section">
+      <div class="section-heading"><span>02</span><div><h2>{{ _("Conversation") }}</h2><p>{{ _("%(count)s messages", count=row.transcript|length) }}</p></div></div>
+      <div class="messages transcript">
+        {% for message in row.transcript %}
+        <div class="message {{ message.role }}"><div class="bubble">{{ message.content }}</div></div>
+        {% else %}
+        <p>{{ _("No messages yet.") }}</p>
+        {% endfor %}
+      </div>
+    </section>
+    <section class="admin-section">
+      <div class="section-heading"><span>03</span><div><h2>{{ _("Summary from the assistant") }}</h2><p>{{ _("Saved when the interview is complete.") }}</p></div></div>
+      {% if summary_json %}<pre class="json">{{ summary_json }}</pre>{% else %}<p>{{ _("Not available yet.") }}</p>{% endif %}
+    </section>
+    <form method="post" action="{{ url_for('admin_response_delete', answer_id=row.id) }}" onsubmit="return confirm('{{ _('Delete this response permanently?') }}');">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+      <input type="hidden" name="study" value="{{ row.study }}" />
+      <button class="admin-submit danger" type="submit">{{ _("Delete this response") }}</button>
+      <small>{{ _("Deleting also frees the Prolific ID so it can be used again (useful for test runs).") }}</small>
+    </form>
+  </main>
+</body>
+</html>

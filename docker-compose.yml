@@ -1,0 +1,87 @@
+# AI Futures study platform: Caddy (HTTPS) → Flask app → PostgreSQL.
+#
+#   cp .env.example .env    # fill in the secrets
+#   docker compose up -d --build
+#
+# Everything that must survive rebuilds and restarts lives under DATA_DIR
+# (default ./data) on the host: the database, study files and certificates.
+
+name: futures
+
+x-logging: &default-logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "5"
+
+services:
+  app:
+    build: .
+    image: futures-app:latest
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      STUDIES_DIR: /data/studies
+      POSTGRES_HOST: db
+      POSTGRES_PORT: "5432"
+      BEHIND_PROXY: "true"
+      SESSION_COOKIE_SECURE: "true"
+      FLASK_SECRET_KEY: ${FLASK_SECRET_KEY:?Set FLASK_SECRET_KEY in .env}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:?Set ADMIN_PASSWORD in .env}
+    volumes:
+      - ${DATA_DIR:-./data}/studies:/data/studies
+    expose:
+      - "8000"        # reachable by Caddy only, never published on the host
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - internal
+    logging: *default-logging
+
+  db:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-futures}
+      POSTGRES_USER: ${POSTGRES_USER:-futures}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+    volumes:
+      - ${DATA_DIR:-./data}/postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U \"$${POSTGRES_USER}\" -d \"$${POSTGRES_DB}\""]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    networks:
+      - internal
+    logging: *default-logging
+
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"         # HTTP: redirects to HTTPS and answers ACME challenges
+      - "443:443"       # HTTPS
+      - "443:443/udp"   # HTTP/3
+    environment:
+      DOMAIN: ${DOMAIN:-localhost}
+    volumes:
+      - ./deploy/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./deploy/caddy/conf.d:/etc/caddy/conf.d:ro
+      - ${LANDING_DIR:-./deploy/landing}:/srv/landing:ro
+      - ${DATA_DIR:-./data}/caddy/data:/data
+      - ${DATA_DIR:-./data}/caddy/config:/config
+    depends_on:
+      - app
+    networks:
+      - internal
+      - edge
+    logging: *default-logging
+
+networks:
+  internal:
+  # Shared network so other stacks on this server (e.g. MicrON) can sit behind
+  # the same Caddy. See DEPLOYMENT.md.
+  edge:
+    name: futures-edge

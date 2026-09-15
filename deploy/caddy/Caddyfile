@@ -1,0 +1,56 @@
+# Reverse proxy for the AI Futures study platform.
+#
+# Caddy gets and renews a Let's Encrypt certificate for {$DOMAIN} and redirects
+# HTTP to HTTPS. With DOMAIN=localhost it uses a local self-signed certificate.
+
+{$DOMAIN:localhost} {
+	encode zstd gzip
+
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		-Server
+	}
+
+	# Study images and PDFs are uploaded through /admin.
+	request_body {
+		max_size 60MB
+	}
+
+	# Optional static landing page at "/" (LANDING_DIR mounted at /srv/landing).
+	# When the folder has no index.html, "/" is served by the app instead.
+	@landing_home {
+		path /
+		file {
+			root /srv/landing
+			try_files /index.html
+		}
+	}
+	handle @landing_home {
+		root * /srv/landing
+		rewrite * /index.html
+		file_server
+	}
+
+	@landing_asset {
+		not path /
+		file {
+			root /srv/landing
+			try_files {path}
+		}
+	}
+	handle @landing_asset {
+		root * /srv/landing
+		file_server
+	}
+
+	# Server-specific extra routes: every *.caddy file in deploy/caddy/conf.d/.
+	# The folder may contain none.
+	import /etc/caddy/conf.d/*.caddy
+
+	# Everything else goes to the Flask app.
+	handle {
+		reverse_proxy app:8000
+	}
+}

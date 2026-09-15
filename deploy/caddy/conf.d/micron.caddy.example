@@ -1,0 +1,9 @@
+# Example of a server-specific route. Copy it to "micron.caddy" to enable it
+# (files ending in .caddy in this folder are loaded by the Caddyfile and are not
+# committed to git).
+#
+# Sends /app/* to the MicrON 2.0 Streamlit app, whose container must be attached
+# to the "futures-edge" Docker network with the alias "micron" (see DEPLOYMENT.md).
+handle /app* {
+	reverse_proxy micron:8501
+}

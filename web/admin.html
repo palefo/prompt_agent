@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="{{ current_language }}">
+{% import "_macros.html" as m with context %}
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{{ _("Create a study") }} | {{ _("AI Futures") }}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+
+<body class="admin-page">
+  <header class="admin-header">
+    <div class="admin-kicker">{{ _("Community Design Lab") }}</div>
+    <h1>{{ _("Edit study") if editing_study else _("Create a new study") }}</h1>
+    <p>{{ _("Set up the participant experience, scenarios, questions, and image assets in one place.") }}</p>
+    {{ m.admin_nav('studies') }}
+  </header>
+  <main class="admin-shell">
+    {{ m.flashes() }}
+    {% if created_study %}<div class="created-link">{{ _("Participant URL:") }} <a href="{{ url_for('survey', study_id=created_study) }}" target="_blank" rel="noopener">{{ url_for('survey', study_id=created_study, _external=True) }}</a></div>{% endif %}
+    <section class="admin-section">
+      <div class="section-heading"><span>00</span><div><h2>{{ _("Available studies") }}</h2><p>{{ _("Open a participant page or edit an existing study.") }}</p></div></div>
+      {% if studies %}
+      <ul class="study-list">
+        {% for study in studies %}
+        <li>
+          <div><strong>{{ study.header }}</strong> <span class="study-id">{{ study.id }}</span></div>
+          <div class="study-meta">{{ _("%(started)s started · %(completed)s completed", started=study.counts.started, completed=study.counts.completed) }}</div>
+          <div class="study-url">{{ study.external_url }}</div>
+          {% if study.missing_files %}<div class="study-missing">{{ _("Missing files:") }} {{ study.missing_files|join(', ') }}</div>{% endif %}
+          <div class="study-actions">
+            <a class="link" href="{{ study.url }}" target="_blank" rel="noopener">{{ _("Open") }}</a>
+            <a class="link" href="{{ url_for('admin', edit=study.id) }}">{{ _("Edit") }}</a>
+            <a class="link" href="{{ url_for('admin_responses', study=study.id) }}">{{ _("Responses") }}</a>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <p>{{ _("No studies created yet.") }}</p>
+      {% endif %}
+      {% if editing_study %}<p><a class="link" href="{{ url_for('admin') }}">{{ _("Create a new study instead") }}</a></p>{% endif %}
+    </section>
+    <form method="post" enctype="multipart/form-data" class="admin-form">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+      {% if editing_study %}<input type="hidden" name="original_study_id" value="{{ editing_study }}" />{% endif %}
+      <section class="admin-section">
+        <div class="section-heading"><span>01</span><div><h2>{{ _("Study details") }}</h2><p>{{ _("These values become the opening page.") }}</p></div></div>
+        <div class="admin-grid">
+          <label>{{ _("Study ID") }} <input name="study_id" value="{{ form.get('study_id', '') if form else '' }}" placeholder="south_asia_2026" pattern="[A-Za-z0-9][A-Za-z0-9_\-]*" {% if editing_study %}readonly{% endif %} required /><small>{{ _("Becomes the study link, e.g. /south_asia. Lowercase letters, numbers, - and _.") }}</small></label>
+          <label>{{ _("Header") }} <input name="header" value="{{ form.get('header', '') if form else '' }}" required /></label>
+          <label>{{ _("Future city") }} <input name="future_city" value="{{ form.get('future_city', '') if form else '' }}" required /></label>
+          <label>{{ _("Languages") }} <textarea name="language_options" required>{{ form.get('language_options', 'en: English') if form else 'en: English' }}</textarea><small>{{ _("One per line as code: Language name, e.g. es: Español or pt-BR: Português (Brasil).") }}</small></label>
+          <label>{{ _("User IDs") }} <textarea name="user_id_list" required>{{ form.get('user_id_list', '') if form else '' }}</textarea><small>{{ _("One per line") }}</small></label>
+          <label>{{ _("Communities") }} <textarea name="communities" required>{{ form.get('communities', '') if form else '' }}</textarea><small>{{ _("One per line") }}</small></label>
+          <label class="full-width">{{ _("Intro text") }} <textarea name="text" rows="3" required>{{ form.get('text', '') if form else '' }}</textarea></label>
+          <label class="full-width">{{ _("Completion URL (optional)") }} <input name="completion_url" type="url" value="{{ form.get('completion_url', '') if form else '' }}" placeholder="https://app.prolific.com/submissions/complete?cc=XXXXXXX" /><small>{{ _("Shown as a button when the participant finishes the conversation, e.g. the Prolific completion link.") }}</small></label>
+        </div>
+      </section>
+      {% for usecase_number in (1, 2) %}
+      <section class="admin-section">
+        <div class="section-heading"><span>0{{ usecase_number + 1 }}</span><div><h2>{{ _("Use case") }} {{ usecase_number }}</h2><p>{{ _("Give participants a clear choice and three scenarios to explore.") }} {{ _("Write the three questions as complete questions. The assistant asks them as written, in the participant's language.") }}</p></div></div>
+        <div class="admin-grid">
+          <label>{{ _("Title") }} <input name="usecase_{{ usecase_number }}_name" value="{{ form.get('usecase_' ~ usecase_number ~ '_name', '') if form else '' }}" required /></label>
+          <label>{{ _("Description") }} <textarea name="usecase_{{ usecase_number }}_description" required>{{ form.get('usecase_' ~ usecase_number ~ '_description', '') if form else '' }}</textarea></label>
+        </div>
+        <div class="question-grid">
+          {% for question, label, hint in (('initial', _("Initial question"), _("Question 1, asked right after the chosen idea is introduced.")), ('context', _("Context question"), _("Question 2, about everyday life.")), ('final', _("Final question"), _("Question 5, about what to change or add."))) %}<label>{{ label }} <textarea name="usecase_{{ usecase_number }}_question_{{ question }}" required>{{ form.get('usecase_' ~ usecase_number ~ '_question_' ~ question, '') if form else '' }}</textarea><small>{{ hint }}</small></label>{% endfor %}
+        </div>
+        {% for scenario_number in (1, 2, 3) %}
+        <fieldset><legend>{{ _("Scenario") }} {{ scenario_number }}</legend><div class="admin-grid">
+          <label>{{ _("Name") }} <input name="scenario_{{ usecase_number }}_{{ scenario_number }}_name" value="{{ form.get('scenario_' ~ usecase_number ~ '_' ~ scenario_number ~ '_name', '') if form else '' }}" required /></label>
+          <label>{{ _("Short description") }} <textarea name="scenario_{{ usecase_number }}_{{ scenario_number }}_short" required>{{ form.get('scenario_' ~ usecase_number ~ '_' ~ scenario_number ~ '_short', '') if form else '' }}</textarea></label>
+          <label>{{ _("What it does") }} <textarea name="scenario_{{ usecase_number }}_{{ scenario_number }}_detail" required>{{ form.get('scenario_' ~ usecase_number ~ '_' ~ scenario_number ~ '_detail', '') if form else '' }}</textarea></label>
+          <label>{{ _("Imagine sentence") }} <textarea name="scenario_{{ usecase_number }}_{{ scenario_number }}_imagine" required>{{ form.get('scenario_' ~ usecase_number ~ '_' ~ scenario_number ~ '_imagine', '') if form else '' }}</textarea></label>
+        </div></fieldset>
+        {% endfor %}
+      </section>
+      {% endfor %}
+      <section class="admin-section">
+        <div class="section-heading"><span>04</span><div><h2>{{ _("Study assets") }}</h2><p>{{ _("Upload the images (PNG, JPG, WebP) and participant information sheet (PDF) used by the participant page.") }}{% if editing_study %} {{ _("Leave a file empty to keep the current one.") }}{% endif %}</p></div></div>
+        <div class="upload-grid">
+          <label>{{ _("City image") }}<input type="file" name="city_image" accept="image/*" {% if not editing_study %}required{% endif %} /></label>
+          <label>{{ _("Use case 1 image") }}<input type="file" name="usecase_one_image" accept="image/*" {% if not editing_study %}required{% endif %} /></label>
+          <label>{{ _("Use case 2 image") }}<input type="file" name="usecase_two_image" accept="image/*" {% if not editing_study %}required{% endif %} /></label>
+          {% for number in (1, 2, 3) %}<label>{{ _("Scenario %(number)s image", number=number) }}<input type="file" name="scenario_{{ number }}_image" accept="image/*" {% if not editing_study %}required{% endif %} /></label>{% endfor %}
+          <label class="full-width">{{ _("Participant information sheet (PDF)") }}<input type="file" name="pis_pdf" accept="application/pdf,.pdf" {% if not editing_study %}required{% endif %} /></label>
+        </div>
+      </section>
+      <button class="admin-submit" type="submit">{{ _("Update study") if editing_study else _("Create study") }}</button>
+    </form>
+  </main>
+</body>
+</html>

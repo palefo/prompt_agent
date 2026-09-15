@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="{{ current_language }}">
+{% import "_macros.html" as m with context %}
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{{ study_config.get('header', _('AI Futures')) if study_config else _('AI Futures') }}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+<link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+
+
+<header class="brand">
+<div class="progress" id="progress">
+    {{ _("Community Design Lab") }}
+</div>
+{{ m.language_picker(url_for('consent', study_id=study), {'PROLIFIC_PID': request.args.get('PROLIFIC_PID')}) }}
+</header>
+
+<main class="consent-shell">
+    <section class="panel consent-panel">
+        <div class="eyebrow">{{ _("Participation information") }}</div>
+        <h1>{{ study_config.get('header', study) if study_config else study }}</h1>
+        {% if study_config %}
+        <p class="lede">{{ study_config.get('text', '') }}</p>
+        <p>{{ _("Please read the study information before continuing. Your responses will be used for this research study.") }}</p>
+        {% endif %}
+        {{ m.flashes() }}
+        {% set pis_url = study_file_url(study, 'pis.pdf') %}
+        <div class="pis-viewer">
+            {% if pis_url %}
+            <embed
+                src="{{ pis_url }}"
+                type="application/pdf"
+                aria-label="{{ _('Participant information sheet') }}"
+            />
+            <p>
+                <a class="secondary pis-link" href="{{ pis_url }}" target="_blank" rel="noopener">
+                    {{ _("Open the participant information sheet") }}
+                </a>
+            </p>
+            {% else %}
+            <div class="notice error">{{ _("The participant information sheet is not available yet. Please contact the research team.") }}</div>
+            {% endif %}
+        </div>
+        <form method="post" action="{{ url_for('consent', study_id=study) }}">
+            <label for="prolificId">{{ _("Prolific ID") }}</label>
+            <input id="prolificId" name="prolific_id" type="text" autocomplete="off" maxlength="100" value="{{ prolific_id or '' }}" required />
+            <label class="consent-check">
+                <input type="checkbox" name="consent" required />
+                <span>{{ _("I consent to take part in this study and confirm that I am the Prolific participant identified above.") }}</span>
+            </label>
+            <label class="pis-check">
+                <input type="checkbox" name="pis" required />
+                <span>{{ _("I confirm that I have read the participant information sheet and agree to take part in this study.") }}</span>
+            </label>
+            <button class="primary" type="submit">{{ _("Continue to study") }}</button>
+        </form>
+    </section>
+</main>
+</html>

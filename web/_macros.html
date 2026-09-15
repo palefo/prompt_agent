@@ -1,0 +1,49 @@
+{# Shared template snippets. Import with: {% import "_macros.html" as m with context %} #}
+
+{% macro study_image(study, filename, alt) -%}
+{%- set src = study_file_url(study, filename) -%}
+{%- if src -%}
+<img src="{{ src }}" alt="{{ alt }}" />
+{%- else -%}
+<div class="image-placeholder" role="img" aria-label="{{ alt }}"><span>{{ alt }}</span></div>
+{%- endif -%}
+{%- endmacro %}
+
+{% macro language_picker(action, hidden={}) -%}
+{% if languages|length > 1 %}
+<div class="language-control">
+    <nav>
+        <label for="languageSelect">{{ _("Language") }}</label>
+        <form method="get" action="{{ action }}">
+            {% for key, value in hidden.items() if value %}
+            <input type="hidden" name="{{ key }}" value="{{ value }}" />
+            {% endfor %}
+            <select id="languageSelect" name="lang" onchange="this.form.submit()">
+            {% for code, name in languages.items() %}
+                <option value="{{ code }}" {% if code == current_language %}selected{% endif %}>{{ name }}</option>
+            {% endfor %}
+            </select>
+        </form>
+    </nav>
+</div>
+{% endif %}
+{%- endmacro %}
+
+{% macro flashes() -%}
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+    <div class="notice {{ category }}">{{ message }}</div>
+    {% endfor %}
+{% endwith %}
+{%- endmacro %}
+
+{% macro admin_nav(active) -%}
+<nav class="admin-nav">
+    <a href="{{ url_for('admin') }}" {% if active == 'studies' %}class="active"{% endif %}>{{ _("Studies") }}</a>
+    <a href="{{ url_for('admin_responses') }}" {% if active == 'responses' %}class="active"{% endif %}>{{ _("Responses") }}</a>
+    <form method="post" action="{{ url_for('admin_logout') }}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+        <button type="submit">{{ _("Log out") }}</button>
+    </form>
+</nav>
+{%- endmacro %}

@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="{{ current_language }}">
+{% import "_macros.html" as m with context %}
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{{ _("Admin login") }} | {{ _("AI Futures") }}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+
+<body class="admin-page">
+  <header class="admin-header">
+    <div class="admin-kicker">{{ _("Community Design Lab") }}</div>
+    <h1>{{ _("Admin login") }}</h1>
+    <p>{{ _("Enter the admin password to manage studies.") }}</p>
+  </header>
+  <main class="admin-shell">
+    {{ m.flashes() }}
+    <form method="post" class="admin-form">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+      <section class="admin-section">
+        <label for="admin-password">{{ _("Password") }}</label>
+        <input id="admin-password" name="password" type="password" autocomplete="current-password" required autofocus />
+      </section>
+      <button class="admin-submit" type="submit">{{ _("Log in") }}</button>
+    </form>
+  </main>
+</body>
+</html>

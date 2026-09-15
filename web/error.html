@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="{{ current_language }}">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{{ title }} | {{ _("AI Futures") }}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+<link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+
+<header class="brand">
+<div class="progress">{{ _("Community Design Lab") }}</div>
+</header>
+<main class="consent-shell">
+    <section class="panel">
+        <div class="eyebrow">{{ _("AI Futures") }}</div>
+        <h1 class="error-title">{{ title }}</h1>
+        <p class="lede">{{ message }}</p>
+        <p><a class="secondary" href="javascript:history.back()">← {{ _("Back") }}</a></p>
+    </section>
+</main>
+</html>

@@ -1,0 +1,73 @@
+{
+  "header": "Header",
+  "future_city": "Futuran",
+  "text": "Hello",
+  "language_options": [
+    {"code": "es", "name": "Español"},
+    {"code": "pt-BR", "name": "Português (Brasil)"},
+    {"code": "en", "name": "English"}
+  ],
+  "user_id_list": [
+    "user5",
+    "user6"
+  ],
+  "communities": [
+    "Brazilian",
+    "Argentinian",
+    "Peruvian"
+  ],
+  "usecase_one": {
+    "Usecase title": {
+      "description": "describe",
+      "scenarios": {
+        "safety": [
+          "what is safe",
+          "it does..",
+          "it is..."
+        ],
+        "community": [
+          "community is",
+          "what does it do",
+          "imagine"
+        ],
+        "independence": [
+          "agency for people",
+          "independence enables",
+          "imagine what thats like"
+        ]
+      },
+      "questions": {
+        "initial": "Initial",
+        "context": "context",
+        "final": "final"
+      }
+    }
+  },
+  "usecase_two": {
+    "Here is the usecase": {
+      "description": "usecase description",
+      "scenarios": {
+        "safety": [
+          "what is it",
+          "a",
+          "b"
+        ],
+        "connection": [
+          "tech name",
+          "c",
+          "d"
+        ],
+        "community": [
+          "e",
+          "f",
+          "g"
+        ]
+      },
+      "questions": {
+        "initial": "one",
+        "context": "two",
+        "final": "three"
+      }
+    }
+  }
+}
